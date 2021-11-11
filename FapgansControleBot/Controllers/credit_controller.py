@@ -21,7 +21,7 @@ class CreditController:
     @user_admin
     def give_credits(self, update: Update, context: CallbackContext):
         text = update.message.text
-        price = price_formatter(text.split(' ')[1])
+        price = price_formatter(update.message.text.removeprefix("/give_credits "))
         credits = Credit(start_price=price)
         self.unit_of_work.get_credit_repository().add(credits)
         self.unit_of_work.complete()
