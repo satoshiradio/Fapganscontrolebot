@@ -1,5 +1,5 @@
-from Bot.Models.user import User
-from Bot.Repository.i_user_repository import IUserRepository
+from FapgansControleBot.Models.user import User
+from FapgansControleBot.Repository.i_user_repository import IUserRepository
 
 
 class UserRepository(IUserRepository):

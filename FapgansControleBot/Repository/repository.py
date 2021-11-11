@@ -1,10 +1,9 @@
 from typing import TypeVar, Type
-
-from sqlalchemy.exc import NoResultFound
 from sqlalchemy.orm import Session
 
-from Bot.Repository.database import Base
-from Bot.Repository.i_repository import IRepository
+from FapgansControleBot.Exceptions.database_exceptions import NoResult
+from FapgansControleBot.Repository.database import Base
+from FapgansControleBot.Repository.i_repository import IRepository
 
 
 ModelType = TypeVar("ModelType", bound=Base)
@@ -38,7 +37,7 @@ class Repository(IRepository[ModelType]):
     def get(self, entity_id, should_error=True) -> ModelType:
         result = self.build().get(entity_id)
         if not result and should_error:
-            raise NoResultFound("No result was found.")
+            raise NoResult("No result was found.")
         return result
 
     def all(self) -> [ModelType]:

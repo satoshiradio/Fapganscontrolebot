@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Generic, TypeVar
 
-from Bot.Repository.database import Base
+from FapgansControleBot.Repository.database import Base
 
 ModelType = TypeVar("ModelType", bound=Base)
 

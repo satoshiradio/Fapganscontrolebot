@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from Bot.Repository.i_user_repository import IUserRepository
-from Bot.Repository.i_repository import IRepository
+from FapgansControleBot.Repository.i_user_repository import IUserRepository
+from FapgansControleBot.Repository.i_repository import IRepository
 
 
 class IUnitOfWork(ABC):

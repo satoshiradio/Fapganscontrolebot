@@ -1,6 +1,6 @@
 from sqlalchemy import Integer, Column, String
 
-from Bot.Repository.database import Base
+from FapgansControleBot.Repository.database import Base
 
 
 class User(Base):
