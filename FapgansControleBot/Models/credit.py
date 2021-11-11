@@ -10,7 +10,7 @@ class Credit(Base):
     credit_id = Column(Integer, primary_key=True)
     start_price = Column(Integer)
     start_time = Column(DateTime)
-    allowed_duration = Column(Integer, default=1)  # time in hours
+    allowed_duration = Column(Integer, default=60)  # time in minutes
 
     def __init__(self, start_price: int):
         self.start_price = start_price
