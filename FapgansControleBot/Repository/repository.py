@@ -45,7 +45,6 @@ class Repository(IRepository[ModelType]):
 
     def add(self, item: ModelType):
         self._session.add(item)
-        self._session.commit()
         return item
 
     def remove(self, item: ModelType):

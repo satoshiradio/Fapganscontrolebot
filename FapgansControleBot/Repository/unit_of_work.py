@@ -1,5 +1,7 @@
 import config
+from FapgansControleBot.Repository.credit_repository import CreditRepository
 from FapgansControleBot.Repository.database import Database
+from FapgansControleBot.Repository.i_credit_repository import ICreditRepository
 from FapgansControleBot.Repository.i_repository import IRepository
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
 
@@ -18,12 +20,21 @@ class UnitOfWork(IUnitOfWork):
         if not self.user_repository:
             self.user_repository = UserRepository(self.session)
 
-    @property
+        self.credit_repository = user_repository
+        if not self.credit_repository:
+            self.credit_repository = CreditRepository(self.session)
+
     def get_user_repository(self) -> IUserRepository:
         return self.user_repository
 
     def set_user_repository(self, repository: IRepository):
-        self.user_repository_value = repository
+        self.user_repository = repository
+
+    def get_credit_repository(self) -> ICreditRepository:
+        return self.credit_repository
+
+    def set_credit_repository(self, repository: IRepository):
+        self.user_repository = repository
 
     def complete(self) -> None:
         self.session.commit()
