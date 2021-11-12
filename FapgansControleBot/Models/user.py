@@ -7,6 +7,7 @@ from FapgansControleBot.Repository.database import Base
 class User(Base):
     __tablename__ = 'users'
     user_id = Column(Integer, primary_key=True)
+    user_telegram_id = Column(Integer, nullable=False)
     user_username = Column(String(256))
     ganzen = relationship("Gans", back_populates="user", cascade="all, delete, delete-orphan")
 
