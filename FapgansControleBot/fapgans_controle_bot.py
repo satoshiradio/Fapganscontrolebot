@@ -28,6 +28,7 @@ class FapgansControleBot:
         self.updater.start_polling(poll_interval=POLL_INTERVAL)
 
     def __process_handlers(self):
-        self.dispatcher.add_handler(CommandHandler("give_credits", self.credit_controller.give_credits))
+        # self.dispatcher.add_handler(CommandHandler("give_credits", self.credit_controller.give_credits))
+        self.dispatcher.add_handler(self.credit_controller.get_commands())
         sticker_handler = MessageHandler(Filters.all, self.message_controller.handle_message)
         self.dispatcher.add_handler(sticker_handler)

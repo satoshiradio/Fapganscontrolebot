@@ -1,12 +1,12 @@
 import config
-from FapgansControleBot.Repository.credit_repository import CreditRepository
+from FapgansControleBot.Repository.CreditRepository.credit_repository import CreditRepository
 from FapgansControleBot.Repository.database import Database
-from FapgansControleBot.Repository.i_credit_repository import ICreditRepository
+from FapgansControleBot.Repository.CreditRepository.i_credit_repository import ICreditRepository
 from FapgansControleBot.Repository.i_repository import IRepository
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
 
-from FapgansControleBot.Repository.i_user_repository import IUserRepository
-from FapgansControleBot.Repository.user_repository import UserRepository
+from FapgansControleBot.Repository.UserRepository.i_user_repository import IUserRepository
+from FapgansControleBot.Repository.UserRepository.user_repository import UserRepository
 
 
 class UnitOfWork(IUnitOfWork):

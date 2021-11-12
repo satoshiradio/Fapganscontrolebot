@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from FapgansControleBot.Repository.i_credit_repository import ICreditRepository
-from FapgansControleBot.Repository.i_user_repository import IUserRepository
+from FapgansControleBot.Repository.CreditRepository.i_credit_repository import ICreditRepository
+from FapgansControleBot.Repository.UserRepository.i_user_repository import IUserRepository
 from FapgansControleBot.Repository.i_repository import IRepository
 
 

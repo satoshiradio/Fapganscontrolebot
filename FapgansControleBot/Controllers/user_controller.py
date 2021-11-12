@@ -2,7 +2,7 @@ from FapgansControleBot.Exceptions.database_exceptions import NoResult
 from FapgansControleBot.Exceptions.user_exceptions import InvalidUserID
 from FapgansControleBot.Models.user import User
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
-from FapgansControleBot.Repository.i_user_repository import IUserRepository
+from FapgansControleBot.Repository.UserRepository.i_user_repository import IUserRepository
 
 
 class UserController:

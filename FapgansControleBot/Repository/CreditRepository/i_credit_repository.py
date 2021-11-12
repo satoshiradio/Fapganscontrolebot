@@ -3,4 +3,8 @@ from FapgansControleBot.Repository.repository import Repository
 
 
 class ICreditRepository(Repository[Credit]):
-    pass
+    def find_credit_by_price(self, price: int):
+        raise NotImplementedError
+
+    def active_gans_periods(self):
+        raise NotImplementedError
