@@ -20,9 +20,16 @@ class CreditRepository(ICreditRepository):
         return result
 
     def active_gans_periods(self) -> Credit:
-        # raise NotImplementedError
         result: Credit = self.build() \
             .filter(Credit.end_time >= datetime.datetime.utcnow()).first()
+        if not result:
+            raise NoResult("No credit at this price")
+        return result
+
+    def get_unused_credits_lower_or_equal_to_price(self, price: int):
+        result: Credit = self.build() \
+            .filter(Credit.start_price <= price) \
+            .filter(Credit.end_time == None).first()
         if not result:
             raise NoResult("No credit at this price")
         return result
