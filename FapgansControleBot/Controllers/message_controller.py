@@ -1,6 +1,10 @@
-from telegram import Message, Update
+from telegram import Message, Update, User as TG_User
+
+from FapgansControleBot.Models.gans import Gans
+from FapgansControleBot.Models.user import User
 from telegram.ext import CallbackContext
 
+from FapgansControleBot.Exceptions.database_exceptions import NoResult
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
 from config import BotConfig
 
@@ -20,4 +24,18 @@ class MessageController:
     def handle_sticker(self, update: Update, context: CallbackContext):
         if update.message:
             if is_fapgans(update.message):
-                print("Fapgans")
+                self.handle_fapgans(update.effective_user)
+
+    def handle_fapgans(self, tg_user: TG_User):
+        try:
+            user: User = self.unit_of_work.get_user_repository().find_user_by_telegram_id(tg_user.id)
+        except NoResult:
+            user: User = User(tg_user.id, tg_user.username)
+            self.unit_of_work.get_user_repository().add(user)
+            self.unit_of_work.complete()
+
+        fapgans = Gans(user.user_id)
+        self.unit_of_work.get_gans_repository().add(fapgans)
+        self.unit_of_work.complete()
+
+
