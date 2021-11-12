@@ -26,6 +26,7 @@ class FapgansControleBot:
         # Start Bot
         self.__process_handlers()
         self.updater.start_polling(poll_interval=POLL_INTERVAL)
+        print("Bot is ready to handle commands and ganzen")
 
     def __process_handlers(self):
         # self.dispatcher.add_handler(CommandHandler("give_credits", self.credit_controller.give_credits))
