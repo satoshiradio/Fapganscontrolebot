@@ -15,3 +15,6 @@ class Credit(Base):
 
     def __init__(self, start_price: int):
         self.start_price = start_price
+
+    def start(self):
+        self.end_time = datetime.datetime.utcnow() + datetime.timedelta(minutes=self.allowed_duration)

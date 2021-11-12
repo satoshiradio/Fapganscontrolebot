@@ -11,6 +11,7 @@ def is_user_admin(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
         member = chat.get_member(user_id)
     return member.status in ('administrator', 'creator')
 
+
 def user_admin(func):
     @wraps(func)
     def is_admin(bot: Bot, update: Update, *args, **kwargs):

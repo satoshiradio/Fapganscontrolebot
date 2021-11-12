@@ -49,5 +49,5 @@ class CreditController:
         except NoResult:
             print("No credit at this price!")
             return
-        result.end_time = datetime.datetime.utcnow() + datetime.timedelta(minutes=result.allowed_duration)
+        result.start()
         self.unit_of_work.complete()
