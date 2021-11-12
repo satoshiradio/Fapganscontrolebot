@@ -1,5 +1,5 @@
 from telegram import Message, Update
-from telegram.ext import Filters, MessageHandler, CallbackContext
+from telegram.ext import CallbackContext
 
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
 from config import BotConfig
@@ -17,7 +17,7 @@ class MessageController:
     def __init__(self, unit_of_work: IUnitOfWork):
         self.unit_of_work = unit_of_work
 
-    def handle_message(self, update: Update, context: CallbackContext):
+    def handle_sticker(self, update: Update, context: CallbackContext):
         if update.message:
             if is_fapgans(update.message):
                 print("Fapgans")

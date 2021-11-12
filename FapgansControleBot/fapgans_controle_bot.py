@@ -1,5 +1,4 @@
-from telegram import Update
-from telegram.ext import Updater, MessageHandler, Filters, CommandHandler, CallbackContext
+from telegram.ext import Updater, MessageHandler, Filters
 
 import config
 from FapgansControleBot.Controllers.credit_controller import CreditController
@@ -30,5 +29,6 @@ class FapgansControleBot:
 
     def __process_handlers(self):
         self.dispatcher.add_handler(self.credit_controller.get_commands())
-        sticker_handler = MessageHandler(Filters.sticker, self.message_controller.handle_message)
+        sticker_handler = MessageHandler(Filters.sticker, self.message_controller.handle_sticker)
         self.dispatcher.add_handler(sticker_handler)
+
