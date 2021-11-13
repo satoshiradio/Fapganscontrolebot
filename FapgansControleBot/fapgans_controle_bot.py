@@ -30,9 +30,6 @@ class FapgansControleBot:
         self.updater.start_polling(poll_interval=POLL_INTERVAL)
         print("Bot is ready to handle commands and ganzen")
 
-        # Start price polling
-        self.price_controller.start()
-
     def __process_handlers(self):
         self.dispatcher.add_handler(self.credit_controller.get_commands())
         sticker_handler = MessageHandler(Filters.sticker, self.message_controller.handle_message)
