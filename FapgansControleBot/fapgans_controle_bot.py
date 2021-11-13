@@ -2,7 +2,7 @@ from telegram.ext import Updater, MessageHandler, Filters
 
 import config
 from FapgansControleBot.Controllers.credit_controller import CreditController
-from FapgansControleBot.Controllers.message_controller import MessageController
+from FapgansControleBot.Controllers.sticker_controller import StickerController
 from FapgansControleBot.Controllers.user_controller import UserController
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
 
@@ -19,7 +19,7 @@ class FapgansControleBot:
 
         # Controllers
         self.user_controller = UserController(self.unit_of_work)
-        self.message_controller = MessageController(self.unit_of_work)
+        self.message_controller = StickerController(self.unit_of_work)
         self.credit_controller = CreditController(self.unit_of_work)
 
         # Start Bot

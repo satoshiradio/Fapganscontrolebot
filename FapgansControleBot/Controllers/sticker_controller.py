@@ -17,7 +17,7 @@ def is_fapgans(message: Message) -> bool:
     return False
 
 
-class MessageController:
+class StickerController:
     def __init__(self, unit_of_work: IUnitOfWork):
         self.unit_of_work = unit_of_work
 
