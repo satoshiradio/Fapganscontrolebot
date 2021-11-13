@@ -13,7 +13,7 @@ class Database:
     session: sessionmaker = None
 
     def __init__(self, db_uri: str):
-        self.db_engine = create_engine(db_uri, echo=True)
+        self.db_engine = create_engine(db_uri, echo=True, connect_args={'check_same_thread': False})
         Base.metadata.create_all(self.db_engine)
         self.connection = self.db_engine.connect()
         self.session = sessionmaker(bind=self.db_engine)

@@ -5,3 +5,8 @@ class BotConfig:
 
 class DbConfig:
     SQLALCHEMY_DATABASE_URI = "sqlite:///database.db"
+
+
+class PriceServiceConfig:
+    SERVICE_URI = "https://api.coindesk.com/v1/bpi/currentprice.json"
+    POLL_INTERVAL_IN_SECONDS = 60
