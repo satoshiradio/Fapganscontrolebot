@@ -13,7 +13,7 @@ class PriceService:
         return
 
     def start(self, func):
-        t = threading.Thread(target=self.do_every_seconds(func, self.poll_interval), args=(1,))
+        t = threading.Thread(target=self.do_every_seconds, args=(func,self.poll_interval))
         t.start()
 
     def get_price(self) -> float:
