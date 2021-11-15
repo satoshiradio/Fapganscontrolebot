@@ -7,6 +7,9 @@ from telegram.ext import CallbackContext
 from FapgansControleBot.Exceptions.database_exceptions import NoResult
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
 from config import BotConfig
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def is_fapgans(message: Message) -> bool:
@@ -34,6 +37,7 @@ class StickerController:
             self.unit_of_work.get_user_repository().add(user)
             self.unit_of_work.complete()
 
+        logger.info("%s (%s) send a Fapgans!", user.user_username, user.user_id)
         fapgans = Gans(user.user_id)
         self.unit_of_work.get_gans_repository().add(fapgans)
         self.unit_of_work.complete()
