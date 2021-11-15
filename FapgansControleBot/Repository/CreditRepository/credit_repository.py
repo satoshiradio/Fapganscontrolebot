@@ -26,7 +26,7 @@ class CreditRepository(ICreditRepository):
             raise NoResult("No credit at this price")
         return result
 
-    def get_unused_credits_lower_or_equal_to_price(self, price: int):
+    def get_unused_credits_lower_or_equal_to_price(self, price: float):
         result: Credit = self.build() \
             .filter(Credit.start_price <= price) \
             .filter(Credit.end_time == None).first()

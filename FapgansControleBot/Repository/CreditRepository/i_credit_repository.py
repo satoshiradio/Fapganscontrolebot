@@ -8,3 +8,6 @@ class ICreditRepository(Repository[Credit]):
 
     def active_gans_periods(self):
         raise NotImplementedError
+
+    def get_unused_credits_lower_or_equal_to_price(self, price: float):
+        raise NotImplementedError

@@ -2,6 +2,7 @@ from telegram.ext import Updater, MessageHandler, Filters
 
 import config
 from FapgansControleBot.Controllers.credit_controller import CreditController
+from FapgansControleBot.Controllers.price_controller import PriceController
 from FapgansControleBot.Controllers.sticker_controller import StickerController
 from FapgansControleBot.Controllers.user_controller import UserController
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
@@ -21,6 +22,7 @@ class FapgansControleBot:
         self.user_controller = UserController(self.unit_of_work)
         self.message_controller = StickerController(self.unit_of_work)
         self.credit_controller = CreditController(self.unit_of_work)
+        self.price_controller = PriceController(self.unit_of_work)
 
         # Start Bot
         self.__process_handlers()
@@ -31,4 +33,3 @@ class FapgansControleBot:
         self.dispatcher.add_handler(self.credit_controller.get_commands())
         sticker_handler = MessageHandler(Filters.sticker, self.message_controller.handle_sticker)
         self.dispatcher.add_handler(sticker_handler)
-
