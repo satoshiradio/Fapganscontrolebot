@@ -3,6 +3,9 @@ from telegram.ext import Filters, MessageHandler, CallbackContext
 
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
 from config import BotConfig
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def is_fapgans(message: Message) -> bool:
@@ -20,4 +23,5 @@ class MessageController:
     def handle_message(self, update: Update, context: CallbackContext):
         if update.message:
             if is_fapgans(update.message):
-                print("Fapgans")
+                user = update.message.from_user
+                logger.info("%s (%s) send a Fapgans!", user.username, user.id, update.message.text)

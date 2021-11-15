@@ -8,6 +8,9 @@ from FapgansControleBot.Middleware.admin_middleware import user_admin
 from FapgansControleBot.Models.credit import Credit
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
 from FapgansControleBot.Utils.Price_utils import price_formatter
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class CreditController:
@@ -26,6 +29,7 @@ class CreditController:
     @user_admin
     def give_credits(self, update: Update, context: CallbackContext):
         price = price_formatter(update.message.text.removeprefix("/give_credits "))
+        logger.info("Giving %s credits", price)
         credits = Credit(start_price=price)
         self.unit_of_work.get_credit_repository().add(credits)
         self.unit_of_work.complete()
@@ -39,15 +43,15 @@ class CreditController:
         try:
             result: Credit = self.unit_of_work.get_credit_repository().active_gans_periods()
         except NoResult:
-            print("No active credit")
+            logger.info("No active credit")
             return
-        print(result.credit_id)
+        logger.info("Active credit ID: %s", result.credit_id)
 
     def start_gans_period(self, start_price):
         try:
             result: Credit = self.unit_of_work.get_credit_repository().find_credit_by_price(start_price)
         except NoResult:
-            print("No credit at this price!")
+            logger.info("No credit at this price!")
             return
         result.start()
         self.unit_of_work.complete()
