@@ -3,6 +3,7 @@ from abc import ABC, abstractmethod
 from FapgansControleBot.Repository.CreditRepository.i_credit_repository import ICreditRepository
 from FapgansControleBot.Repository.GansRepository.i_gans_repository import IGansRepository
 from FapgansControleBot.Repository.UserRepository.i_user_repository import IUserRepository
+from FapgansControleBot.Repository.WarningRepository.i_warning_repository import IWarningRepository
 from FapgansControleBot.Repository.i_repository import IRepository
 
 
@@ -28,7 +29,15 @@ class IUnitOfWork(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def set_gans_repository(self, repository: IRepository):
+    def set_warning_repository(self, repository: IRepository):
+        raise NotImplementedError
+
+    @abstractmethod
+    def get_warning_repository(self) -> IWarningRepository:
+        raise NotImplementedError
+
+    @abstractmethod
+    def set_warning_repository(self, repository: IRepository):
         raise NotImplementedError
 
     @abstractmethod

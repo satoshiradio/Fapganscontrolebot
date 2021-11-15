@@ -34,6 +34,7 @@ class CreditController:
 
     @user_admin
     def ganzentrek(self, update: Update, context: CallbackContext):
+        logger.info("Ganzentrek")
         price = price_formatter(update.message.text.removeprefix("/ganzentrek "))
         self.start_gans_period(price)
 

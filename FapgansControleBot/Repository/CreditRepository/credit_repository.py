@@ -2,6 +2,7 @@ import datetime
 
 from FapgansControleBot.Exceptions.database_exceptions import NoResult
 from FapgansControleBot.Models.credit import Credit
+from FapgansControleBot.Models.gans import Gans
 from FapgansControleBot.Repository.CreditRepository.i_credit_repository import ICreditRepository
 
 
@@ -11,7 +12,7 @@ class CreditRepository(ICreditRepository):
         self.Model = Credit
         super().__init__(database)
 
-    def find_credit_by_price(self, price: int) -> Credit:
+    def find_credit_by_price(self, price: float) -> Credit:
         result: Credit = self.build() \
             .filter(Credit.start_price == price) \
             .filter(Credit.end_time == None).first()
@@ -33,5 +34,7 @@ class CreditRepository(ICreditRepository):
         if not result:
             raise NoResult("No credit at this price")
         return result
+
+
 
 
