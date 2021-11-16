@@ -18,8 +18,6 @@ class FapgansService:
         self.user_service = user_service
 
     def handle_fapgans(self, tg_user_id: int, tg_username: str, chat_id: int):
-
-        # user = self.unit_of_work.get_user_repository().find_user_by_telegram_id(tg_user_id)
         user = self.user_service.find_user_or_register(tg_user_id, tg_username)
         gans = self.register_gans(user)
         self.is_valid_gans(chat_id, user, gans)
@@ -29,7 +27,7 @@ class FapgansService:
             current_period: Credit = self.current_gans_period()
         except NoResult:
             logger.info("Not in a gans period")
-            self.warning_view.not_in_gans_period(chat_id,user)
+            self.warning_view.not_in_gans_period(chat_id, user)
             return False
         gans.credit_id = current_period.credit_id
         amount_of_ganzen = self.amount_of_ganzen_in_credit(user.user_id, current_period.credit_id)
