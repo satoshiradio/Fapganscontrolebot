@@ -134,4 +134,5 @@ dmypy.json
 config.py
 
 # database
+database.db-journal
 database.db
