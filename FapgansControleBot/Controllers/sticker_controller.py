@@ -10,6 +10,7 @@ from telegram.ext import CallbackContext
 
 from FapgansControleBot.Exceptions.database_exceptions import NoResult
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
+from FapgansControleBot.Views import WarningView
 from config import BotConfig
 import logging
 
@@ -25,9 +26,10 @@ def is_fapgans(message: Message) -> bool:
 
 
 class StickerController:
-    def __init__(self, unit_of_work: IUnitOfWork):
+    def __init__(self, unit_of_work: IUnitOfWork, warning_view: WarningView):
         self.unit_of_work = unit_of_work
-        self.fapgans_controller = FapgansController(self.unit_of_work)
+        self.warning_view = warning_view
+        self.fapgans_controller = FapgansController(self.unit_of_work, self.warning_view)
 
     def handle_sticker(self, update: Update, context: CallbackContext):
         if update.message:
@@ -36,7 +38,7 @@ class StickerController:
 
     def handle_fapgans(self, tg_user: TG_User, chat_id: int):
         logger.info("%s (%s) send a Fapgans!", tg_user.username, tg_user.id)
-        self.validate_fapgans(tg_user)
+        self.validate_fapgans(tg_user, chat_id)
 
     def register_gans(self, user: User) -> Gans:
         fapgans = Gans(user.user_id)
@@ -55,11 +57,11 @@ class StickerController:
         self.unit_of_work.complete()
         return user
 
-    def validate_fapgans(self, tg_user: TG_User):
+    def validate_fapgans(self, tg_user: TG_User, chat_id: int):
         user: User = self.find_user_or_register(tg_user.id, tg_user.username)
         gans = self.register_gans(user)
         self.unit_of_work.complete()
-        is_valid: bool = self.fapgans_controller.is_valid_gans(user.user_id, gans)
+        is_valid: bool = self.fapgans_controller.is_valid_gans(chat_id, user, gans)
         if not is_valid:
             self.register_warning(user, gans)
         self.unit_of_work.complete()

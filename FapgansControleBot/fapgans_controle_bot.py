@@ -6,6 +6,7 @@ from FapgansControleBot.Controllers.price_controller import PriceController
 from FapgansControleBot.Controllers.sticker_controller import StickerController
 from FapgansControleBot.Controllers.user_controller import UserController
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
+from FapgansControleBot.Views.WarningView import WarningView
 
 POLL_INTERVAL = 1
 
@@ -18,9 +19,12 @@ class FapgansControleBot:
         self.updater = Updater(token=config.BotConfig.TOKEN, use_context=True)
         self.dispatcher = self.updater.dispatcher
 
+        # Views
+        self.warning_view = WarningView(self.updater)
+
         # Controllers
         self.user_controller = UserController(self.unit_of_work)
-        self.message_controller = StickerController(self.unit_of_work)
+        self.message_controller = StickerController(self.unit_of_work, self.warning_view)
         self.credit_controller = CreditController(self.unit_of_work)
         self.price_controller = PriceController(self.unit_of_work)
 

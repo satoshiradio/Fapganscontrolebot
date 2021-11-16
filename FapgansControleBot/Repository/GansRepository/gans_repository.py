@@ -10,7 +10,7 @@ class GansRepository(IGansRepository):
 
     def amount_of_ganzen_by_user_id(self, user_id: int, credit_id: int) -> int:
         return self.build() \
-            .filter(Gans.credit_id <= credit_id) \
+            .filter(Gans.credit_id == credit_id) \
             .filter(Gans.user_id == user_id) \
             .count()
 
