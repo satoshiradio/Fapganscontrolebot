@@ -1,10 +1,10 @@
 from typing import TypeVar, Type
+
 from sqlalchemy.orm import Session
 
 from FapgansControleBot.Exceptions.database_exceptions import NoResult
 from FapgansControleBot.Repository.database import Base
 from FapgansControleBot.Repository.i_repository import IRepository
-
 
 ModelType = TypeVar("ModelType", bound=Base)
 

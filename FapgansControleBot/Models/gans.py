@@ -1,6 +1,6 @@
 import datetime
 
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
 from FapgansControleBot.Repository.database import Base

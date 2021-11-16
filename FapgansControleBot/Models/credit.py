@@ -16,5 +16,12 @@ class Credit(Base):
     def __init__(self, start_price: int):
         self.start_price = start_price
 
+    @property
+    def is_active(self):
+        if self.end_time is None:
+            return False
+        return self.end_time > datetime.datetime.utcnow()
+
     def start(self):
         self.end_time = datetime.datetime.utcnow() + datetime.timedelta(minutes=self.allowed_duration)
+

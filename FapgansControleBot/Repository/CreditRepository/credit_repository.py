@@ -2,7 +2,6 @@ import datetime
 
 from FapgansControleBot.Exceptions.database_exceptions import NoResult
 from FapgansControleBot.Models.credit import Credit
-from FapgansControleBot.Models.gans import Gans
 from FapgansControleBot.Repository.CreditRepository.i_credit_repository import ICreditRepository
 
 

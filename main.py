@@ -1,7 +1,9 @@
+import logging
+
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
 from FapgansControleBot.Repository.unit_of_work import UnitOfWork
 from FapgansControleBot.fapgans_controle_bot import FapgansControleBot
-import logging
+
 
 def main():
     logging.basicConfig(format='%(asctime)s - %(name)12s - %(levelname)s - %(message)s', level=logging.INFO)
