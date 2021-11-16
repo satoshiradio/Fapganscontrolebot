@@ -1,10 +1,10 @@
 import logging
-
-import config
-import requests
 import threading
 import time
 
+import requests
+
+import config
 from FapgansControleBot.Exceptions.database_exceptions import NoResult
 from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
 

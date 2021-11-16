@@ -1,18 +1,10 @@
-import datetime
+import logging
 
 from telegram import Message, Update, User as TG_User
-
-from FapgansControleBot.Models.gans import Gans
-from FapgansControleBot.Models.user import User
-from FapgansControleBot.Models.fapganswarning import FapgansWarning
 from telegram.ext import CallbackContext
 
-from FapgansControleBot.Exceptions.database_exceptions import NoResult
-from FapgansControleBot.Repository.i_unit_of_work import IUnitOfWork
 from FapgansControleBot.Services.fapgans_service import FapgansService
-from FapgansControleBot.Views import WarningView
 from config import BotConfig
-import logging
 
 logger = logging.getLogger(__name__)
 
