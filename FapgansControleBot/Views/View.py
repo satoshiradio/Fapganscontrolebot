@@ -14,6 +14,6 @@ class View:
             reply_markup=keyboard,
         )
 
-    def send_error(self, chat_id, text: str, keyboard: ReplyMarkup = None) -> None:
-        formatted_text = f'⚠<b>{text}</b>⚠'
+    def send_error(self, chat_id, text: str, mentions: str, keyboard: ReplyMarkup = None) -> None:
+        formatted_text = f'⚠<b>{text}</b>⚠ \n{mentions}'
         self.send_message(chat_id, formatted_text, keyboard)
