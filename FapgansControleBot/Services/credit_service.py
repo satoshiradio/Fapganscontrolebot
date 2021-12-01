@@ -11,7 +11,7 @@ class CreditService:
     def __init__(self, unit_of_work: IUnitOfWork):
         self.unit_of_work = unit_of_work
 
-    def start_gans_period(self, start_price):
+    def start_gans_period(self, start_price: int):
         try:
             result: Credit = self.unit_of_work.get_credit_repository().find_credit_by_price(start_price)
         except NoResult:
@@ -20,7 +20,8 @@ class CreditService:
         result.start()
         self.unit_of_work.complete()
 
-    def register_credit(self, price):
+    def register_credit(self, price: int):
+        logger.info("Giving credits for price: %s", price)
         new_credits = Credit(start_price=price)
         self.unit_of_work.get_credit_repository().add(new_credits)
         self.unit_of_work.complete()
