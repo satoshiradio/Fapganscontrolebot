@@ -49,7 +49,8 @@ class FapgansService:
         self.unit_of_work.get_gans_repository().add(fapgans)
         return fapgans
 
-    def start_gans_period(self, start_price):
+    def start_gans_period(self, start_price: int):
+        logger.info("Starting Ganzentrek for price: %s", start_price)
         try:
             result: Credit = self.unit_of_work.get_credit_repository().find_credit_by_price(start_price)
         except NoResult:
